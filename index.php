@@ -13,12 +13,12 @@
     <body>
         <main>
             <div class="container">
-                <?php include 'data.php'; ?> <!-- Terzo Metodo utilizzando l'attributo data -->
-                <canvas id="line-chart" data-database="<?php echo json_encode($data); ?>"></canvas>
+                <?php // include 'data.php'; ?> <!-- Terzo Metodo utilizzando l'attributo data -->
+                <canvas id="line-chart" data-database="<?php // echo json_encode($data); ?>"></canvas>
             </div>
         </main>
 
-        <script>
+        <!-- <script>
             $(document).ready(function () {
                 var months = ['Gennaio', 'Febbraio','Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
                 <?php // $data = [1000,1322,1123,2301,3288,988,502,2300,5332,2300,1233,2322]; ?> // Primo Metodo senza file esterni
@@ -40,8 +40,8 @@
                     }
                 });
             });
-        </script>
+        </script> -->
 
-        <!-- <script src="dist/js/app.js" charset="utf-8"></script> -->
+        <script src="dist/js/app.js" charset="utf-8"></script>
     </body>
 </html>
