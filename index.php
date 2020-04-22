@@ -13,7 +13,8 @@
     <body>
         <main>
             <div class="container">
-                <canvas id="line-chart"></canvas>
+                <?php include 'data.php'; ?> <!-- Terzo Metodo utilizzando l'attributo data -->
+                <canvas id="line-chart" data-database="<?php echo json_encode($data); ?>"></canvas>
             </div>
         </main>
 
@@ -21,8 +22,9 @@
             $(document).ready(function () {
                 var months = ['Gennaio', 'Febbraio','Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
                 <?php // $data = [1000,1322,1123,2301,3288,988,502,2300,5332,2300,1233,2322]; ?> // Primo Metodo senza file esterni
-                <?php include 'data.php'; ?> // Secondo Metodo utilizzando un file esterno
-                var data = <?php echo json_encode($data); ?>;
+                <?php // include 'data.php'; ?> // Secondo Metodo utilizzando un file esterno
+                // var data = <?php // echo json_encode($data); ?>;
+                var data = $('#line-chart').data('database');
 
                 var ctx = $('#line-chart');
                 var chart = new Chart(ctx, {
