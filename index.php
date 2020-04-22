@@ -20,7 +20,8 @@
         <script>
             $(document).ready(function () {
                 var months = ['Gennaio', 'Febbraio','Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
-                <?php $data = [1000,1322,1123,2301,3288,988,502,2300,5332,2300,1233,2322]; ?>
+                <?php // $data = [1000,1322,1123,2301,3288,988,502,2300,5332,2300,1233,2322]; ?> // Primo Metodo senza file esterni
+                <?php include 'data.php'; ?> // Secondo Metodo utilizzando un file esterno
                 var data = <?php echo json_encode($data); ?>;
 
                 var ctx = $('#line-chart');
