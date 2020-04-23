@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
-    apiCallGet();
+    apiMonthlyTurnover();
 
-    function apiCallGet() {
+    function apiMonthlyTurnover() {
         $.ajax({
             url: 'server.php',
             method: 'GET',
