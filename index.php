@@ -16,6 +16,9 @@
                 <?php // include 'data.php'; ?> <!-- Terzo Metodo utilizzando l'attributo data -->
                 <canvas id="line-chart" data-database="<?php // echo json_encode($data); ?>"></canvas>
             </div>
+            <div class="container">
+                <canvas id="pie-chart"></canvas>
+            </div>
         </main>
 
         <!-- <script>
