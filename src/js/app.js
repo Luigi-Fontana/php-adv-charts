@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     ajaxCallGet('server-fatturato.php'); // Richiamo funzione di chiamata Ajax al server-fatturato
     ajaxCallGet('server-agente.php'); // Richiamo funzione di chiamata Ajax al server-agente
+    ajaxCallGet('server-team.php'); // Richiamo funzione di chiamata Ajax al server-team
 
     function ajaxCallGet(server) { // Funzione di chiamata GET con url in entrata
         $.ajax({
@@ -10,10 +11,14 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.type == 'line') { // Se il tipo è line
                     var months = ['Gennaio', 'Febbraio','Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
-                    createLineChart(months, data.data); // Richiamo funzione di creazione grafico a linee con labels e data in entrata
+                    if (server == 'server-fatturato.php') { // se l'url è quello relativo al venduto mensile
+                        createLineChart(months, data.data); // Richiamo funzione di creazione grafico a linee con labels e data in entrata
+                    } else if (server == 'server-team.php') { // altrimenti se l'url è quello relativo al venduto per team
+                        createMultiLineChart(months, data.data.Team1, data.data.Team2, data.data.Team3); // Richiamo funzione di creazione grafico multilinea con labels e tre data in entrata
+                    }
                 } else if (data.type == 'pie') { // Se il tipo è pie
-                   var objectChart = createObjectChart(data.data); // Creo un oggetto contenente i due array labels e data
-                   createPieChart(objectChart.labels, objectChart.data); // Richiamo funzione di creazione grafico a torta con labels e data in entrata
+                    var objectChart = createObjectChart(data.data); // Creo un oggetto contenente i due array labels e data
+                    createPieChart(objectChart.labels, objectChart.data); // Richiamo funzione di creazione grafico a torta con labels e data in entrata
                 }
             },
             error: function (err) {
@@ -47,6 +52,33 @@ $(document).ready(function () {
                     borderColor: '#003366',
                     data: data
                 }]
+            }
+        });
+    }
+
+    function createMultiLineChart(labels, firstData, secondData, thirdData) { // Funzione di creazione grafico multilinea con labels e tre data in entrata
+        var ctx = $('#multiline-chart');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                    label: 'Team1',
+                    borderColor: 'red',
+                    data: firstData
+                    },
+                    {
+                    label: 'Team2',
+                    borderColor: 'green',
+                    data: secondData
+                    },
+                    {
+                    label: 'Team2',
+                    borderColor: 'blue',
+                    data: thirdData
+                    }
+                ]
             }
         });
     }

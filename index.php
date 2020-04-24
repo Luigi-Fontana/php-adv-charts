@@ -19,6 +19,18 @@
             <div class="container">
                 <canvas id="pie-chart"></canvas>
             </div>
+            <div class="container">
+                <canvas id="multiline-chart"></canvas>
+            </div>
+
+            <?php if (true) { ?>
+                <h1>TRUE</h1>
+            <?php } ?>
+
+            <?php if (false) { ?>
+                <h1>FALSE</h1>
+            <?php } ?>
+
         </main>
 
         <!-- <script>
